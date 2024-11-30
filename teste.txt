@@ -1,0 +1,33 @@
+int a, b, c;
+float x;
+char _myChar;
+double __doubleVar123;
+
+a = 10;
+b = 20;
+c = a + b;
+
+if )a MENOR_QUE_OUTRO_VALOR b( ¡
+    c = c + 1;
+! else ¡
+    c = c - 1;
+!
+
+switch )a( ¡
+    case 10:
+        c = c * 2;
+        break;
+    case 20:
+        c = c / 2;
+        break;
+    default:
+        c = 0;
+!
+
+while )c MAIOR_QUE_OUTRO_VALOR 0( ¡
+    c = c - 1;
+!
+
+for )i = 0; i MENOR_QUE_OUTRO_VALOR 10; i++ ( ¡
+    c += i;
+!

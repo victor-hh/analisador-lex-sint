@@ -1,0 +1,1769 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> decl_var_list stmt_list
+Rule 2     decl_var_list -> decl_var_list decl_var
+Rule 3     decl_var_list -> empty
+Rule 4     decl_var -> type id_list SEMICOLON
+Rule 5     type -> INT
+Rule 6     type -> FLOAT
+Rule 7     type -> DOUBLE
+Rule 8     type -> CHAR
+Rule 9     id_list -> id_list COMMA IDENTIFIER
+Rule 10    id_list -> IDENTIFIER
+Rule 11    stmt_list -> stmt_list stmt
+Rule 12    stmt_list -> empty
+Rule 13    stmt -> if_stmt
+Rule 14    stmt -> switch_stmt
+Rule 15    stmt -> while_stmt
+Rule 16    stmt -> for_stmt
+Rule 17    stmt -> assign_expr SEMICOLON
+Rule 18    if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+Rule 19    else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE
+Rule 20    else_part -> empty
+Rule 21    switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+Rule 22    case_list -> case_list case_item
+Rule 23    case_list -> empty
+Rule 24    case_item -> CASE NUMBER COLON stmt_list BREAK SEMICOLON
+Rule 25    case_item -> CASE NUMBER COLON stmt_list
+Rule 26    default_part -> DEFAULT COLON stmt_list
+Rule 27    default_part -> empty
+Rule 28    while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+Rule 29    for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+Rule 30    assign_expr -> IDENTIFIER ASSIGN expr
+Rule 31    assign_expr -> IDENTIFIER PLUS_ASSIGN expr
+Rule 32    assign_expr -> IDENTIFIER MINUS_ASSIGN expr
+Rule 33    assign_expr -> IDENTIFIER MULTIPLY_ASSIGN expr
+Rule 34    assign_expr -> IDENTIFIER DIVIDE_ASSIGN expr
+Rule 35    assign_expr -> IDENTIFIER INCREMENT
+Rule 36    assign_expr -> IDENTIFIER DECREMENT
+Rule 37    expr -> expr PLUS expr
+Rule 38    expr -> expr MINUS expr
+Rule 39    expr -> expr MULTIPLY expr
+Rule 40    expr -> expr DIVIDE expr
+Rule 41    expr -> LEFT_PAREN expr RIGHT_PAREN
+Rule 42    expr -> NUMBER
+Rule 43    expr -> IDENTIFIER
+Rule 44    condition -> expr relational_operator expr
+Rule 45    relational_operator -> EQUAL
+Rule 46    relational_operator -> NOT_EQUAL
+Rule 47    relational_operator -> LESS_EQUAL
+Rule 48    relational_operator -> GREATER_EQUAL
+Rule 49    relational_operator -> LESS_THAN
+Rule 50    relational_operator -> GREATER_THAN
+Rule 51    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ASSIGN               : 30
+BREAK                : 24
+CASE                 : 24 25
+CHAR                 : 8
+COLON                : 24 25 26
+COMMA                : 9
+DECREMENT            : 36
+DEFAULT              : 26
+DIVIDE               : 40
+DIVIDE_ASSIGN        : 34
+DOUBLE               : 7
+ELSE                 : 19
+EQUAL                : 45
+FLOAT                : 6
+FOR                  : 29
+GREATER_EQUAL        : 48
+GREATER_THAN         : 50
+IDENTIFIER           : 9 10 21 30 31 32 33 34 35 36 43
+IF                   : 18
+INCREMENT            : 35
+INT                  : 5
+LEFT_BRACE           : 18 19 21 28 29
+LEFT_PAREN           : 18 21 28 29 41
+LESS_EQUAL           : 47
+LESS_THAN            : 49
+MINUS                : 38
+MINUS_ASSIGN         : 32
+MULTIPLY             : 39
+MULTIPLY_ASSIGN      : 33
+NOT_EQUAL            : 46
+NUMBER               : 24 25 42
+PLUS                 : 37
+PLUS_ASSIGN          : 31
+RIGHT_BRACE          : 18 19 21 28 29
+RIGHT_PAREN          : 18 21 28 29 41
+SEMICOLON            : 4 17 24 29 29
+SWITCH               : 21
+WHILE                : 28
+error                : 
+
+Nonterminals, with rules where they appear
+
+assign_expr          : 17 29 29
+case_item            : 22
+case_list            : 21 22
+condition            : 18 28 29
+decl_var             : 2
+decl_var_list        : 1 2
+default_part         : 21
+else_part            : 18
+empty                : 3 12 20 23 27
+expr                 : 30 31 32 33 34 37 37 38 38 39 39 40 40 41 44 44
+for_stmt             : 16
+id_list              : 4 9
+if_stmt              : 13
+program              : 0
+relational_operator  : 44
+stmt                 : 11
+stmt_list            : 1 11 18 19 24 25 26 28 29
+switch_stmt          : 14
+type                 : 4
+while_stmt           : 15
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . decl_var_list stmt_list
+    (2) decl_var_list -> . decl_var_list decl_var
+    (3) decl_var_list -> . empty
+    (51) empty -> .
+
+    INT             reduce using rule 51 (empty -> .)
+    FLOAT           reduce using rule 51 (empty -> .)
+    DOUBLE          reduce using rule 51 (empty -> .)
+    CHAR            reduce using rule 51 (empty -> .)
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+    $end            reduce using rule 51 (empty -> .)
+
+    program                        shift and go to state 1
+    decl_var_list                  shift and go to state 2
+    empty                          shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> decl_var_list . stmt_list
+    (2) decl_var_list -> decl_var_list . decl_var
+    (11) stmt_list -> . stmt_list stmt
+    (12) stmt_list -> . empty
+    (4) decl_var -> . type id_list SEMICOLON
+    (51) empty -> .
+    (5) type -> . INT
+    (6) type -> . FLOAT
+    (7) type -> . DOUBLE
+    (8) type -> . CHAR
+
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+    $end            reduce using rule 51 (empty -> .)
+    INT             shift and go to state 8
+    FLOAT           shift and go to state 9
+    DOUBLE          shift and go to state 10
+    CHAR            shift and go to state 11
+
+    stmt_list                      shift and go to state 4
+    decl_var                       shift and go to state 5
+    empty                          shift and go to state 6
+    type                           shift and go to state 7
+
+state 3
+
+    (3) decl_var_list -> empty .
+
+    INT             reduce using rule 3 (decl_var_list -> empty .)
+    FLOAT           reduce using rule 3 (decl_var_list -> empty .)
+    DOUBLE          reduce using rule 3 (decl_var_list -> empty .)
+    CHAR            reduce using rule 3 (decl_var_list -> empty .)
+    IF              reduce using rule 3 (decl_var_list -> empty .)
+    SWITCH          reduce using rule 3 (decl_var_list -> empty .)
+    WHILE           reduce using rule 3 (decl_var_list -> empty .)
+    FOR             reduce using rule 3 (decl_var_list -> empty .)
+    IDENTIFIER      reduce using rule 3 (decl_var_list -> empty .)
+    $end            reduce using rule 3 (decl_var_list -> empty .)
+
+
+state 4
+
+    (1) program -> decl_var_list stmt_list .
+    (11) stmt_list -> stmt_list . stmt
+    (13) stmt -> . if_stmt
+    (14) stmt -> . switch_stmt
+    (15) stmt -> . while_stmt
+    (16) stmt -> . for_stmt
+    (17) stmt -> . assign_expr SEMICOLON
+    (18) if_stmt -> . IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+    (21) switch_stmt -> . SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+    (28) while_stmt -> . WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (29) for_stmt -> . FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    $end            reduce using rule 1 (program -> decl_var_list stmt_list .)
+    IF              shift and go to state 18
+    SWITCH          shift and go to state 19
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IDENTIFIER      shift and go to state 20
+
+    stmt                           shift and go to state 12
+    if_stmt                        shift and go to state 13
+    switch_stmt                    shift and go to state 14
+    while_stmt                     shift and go to state 15
+    for_stmt                       shift and go to state 16
+    assign_expr                    shift and go to state 17
+
+state 5
+
+    (2) decl_var_list -> decl_var_list decl_var .
+
+    INT             reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    FLOAT           reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    DOUBLE          reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    CHAR            reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    IF              reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    SWITCH          reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    WHILE           reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    FOR             reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    IDENTIFIER      reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+    $end            reduce using rule 2 (decl_var_list -> decl_var_list decl_var .)
+
+
+state 6
+
+    (12) stmt_list -> empty .
+
+    IF              reduce using rule 12 (stmt_list -> empty .)
+    SWITCH          reduce using rule 12 (stmt_list -> empty .)
+    WHILE           reduce using rule 12 (stmt_list -> empty .)
+    FOR             reduce using rule 12 (stmt_list -> empty .)
+    IDENTIFIER      reduce using rule 12 (stmt_list -> empty .)
+    $end            reduce using rule 12 (stmt_list -> empty .)
+    RIGHT_BRACE     reduce using rule 12 (stmt_list -> empty .)
+    BREAK           reduce using rule 12 (stmt_list -> empty .)
+    DEFAULT         reduce using rule 12 (stmt_list -> empty .)
+    CASE            reduce using rule 12 (stmt_list -> empty .)
+
+
+state 7
+
+    (4) decl_var -> type . id_list SEMICOLON
+    (9) id_list -> . id_list COMMA IDENTIFIER
+    (10) id_list -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 24
+
+    id_list                        shift and go to state 23
+
+state 8
+
+    (5) type -> INT .
+
+    IDENTIFIER      reduce using rule 5 (type -> INT .)
+
+
+state 9
+
+    (6) type -> FLOAT .
+
+    IDENTIFIER      reduce using rule 6 (type -> FLOAT .)
+
+
+state 10
+
+    (7) type -> DOUBLE .
+
+    IDENTIFIER      reduce using rule 7 (type -> DOUBLE .)
+
+
+state 11
+
+    (8) type -> CHAR .
+
+    IDENTIFIER      reduce using rule 8 (type -> CHAR .)
+
+
+state 12
+
+    (11) stmt_list -> stmt_list stmt .
+
+    IF              reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    SWITCH          reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    WHILE           reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    FOR             reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    IDENTIFIER      reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    $end            reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    RIGHT_BRACE     reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    BREAK           reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    DEFAULT         reduce using rule 11 (stmt_list -> stmt_list stmt .)
+    CASE            reduce using rule 11 (stmt_list -> stmt_list stmt .)
+
+
+state 13
+
+    (13) stmt -> if_stmt .
+
+    IF              reduce using rule 13 (stmt -> if_stmt .)
+    SWITCH          reduce using rule 13 (stmt -> if_stmt .)
+    WHILE           reduce using rule 13 (stmt -> if_stmt .)
+    FOR             reduce using rule 13 (stmt -> if_stmt .)
+    IDENTIFIER      reduce using rule 13 (stmt -> if_stmt .)
+    $end            reduce using rule 13 (stmt -> if_stmt .)
+    RIGHT_BRACE     reduce using rule 13 (stmt -> if_stmt .)
+    BREAK           reduce using rule 13 (stmt -> if_stmt .)
+    DEFAULT         reduce using rule 13 (stmt -> if_stmt .)
+    CASE            reduce using rule 13 (stmt -> if_stmt .)
+
+
+state 14
+
+    (14) stmt -> switch_stmt .
+
+    IF              reduce using rule 14 (stmt -> switch_stmt .)
+    SWITCH          reduce using rule 14 (stmt -> switch_stmt .)
+    WHILE           reduce using rule 14 (stmt -> switch_stmt .)
+    FOR             reduce using rule 14 (stmt -> switch_stmt .)
+    IDENTIFIER      reduce using rule 14 (stmt -> switch_stmt .)
+    $end            reduce using rule 14 (stmt -> switch_stmt .)
+    RIGHT_BRACE     reduce using rule 14 (stmt -> switch_stmt .)
+    BREAK           reduce using rule 14 (stmt -> switch_stmt .)
+    DEFAULT         reduce using rule 14 (stmt -> switch_stmt .)
+    CASE            reduce using rule 14 (stmt -> switch_stmt .)
+
+
+state 15
+
+    (15) stmt -> while_stmt .
+
+    IF              reduce using rule 15 (stmt -> while_stmt .)
+    SWITCH          reduce using rule 15 (stmt -> while_stmt .)
+    WHILE           reduce using rule 15 (stmt -> while_stmt .)
+    FOR             reduce using rule 15 (stmt -> while_stmt .)
+    IDENTIFIER      reduce using rule 15 (stmt -> while_stmt .)
+    $end            reduce using rule 15 (stmt -> while_stmt .)
+    RIGHT_BRACE     reduce using rule 15 (stmt -> while_stmt .)
+    BREAK           reduce using rule 15 (stmt -> while_stmt .)
+    DEFAULT         reduce using rule 15 (stmt -> while_stmt .)
+    CASE            reduce using rule 15 (stmt -> while_stmt .)
+
+
+state 16
+
+    (16) stmt -> for_stmt .
+
+    IF              reduce using rule 16 (stmt -> for_stmt .)
+    SWITCH          reduce using rule 16 (stmt -> for_stmt .)
+    WHILE           reduce using rule 16 (stmt -> for_stmt .)
+    FOR             reduce using rule 16 (stmt -> for_stmt .)
+    IDENTIFIER      reduce using rule 16 (stmt -> for_stmt .)
+    $end            reduce using rule 16 (stmt -> for_stmt .)
+    RIGHT_BRACE     reduce using rule 16 (stmt -> for_stmt .)
+    BREAK           reduce using rule 16 (stmt -> for_stmt .)
+    DEFAULT         reduce using rule 16 (stmt -> for_stmt .)
+    CASE            reduce using rule 16 (stmt -> for_stmt .)
+
+
+state 17
+
+    (17) stmt -> assign_expr . SEMICOLON
+
+    SEMICOLON       shift and go to state 25
+
+
+state 18
+
+    (18) if_stmt -> IF . LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+
+    LEFT_PAREN      shift and go to state 26
+
+
+state 19
+
+    (21) switch_stmt -> SWITCH . LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+
+    LEFT_PAREN      shift and go to state 27
+
+
+state 20
+
+    (30) assign_expr -> IDENTIFIER . ASSIGN expr
+    (31) assign_expr -> IDENTIFIER . PLUS_ASSIGN expr
+    (32) assign_expr -> IDENTIFIER . MINUS_ASSIGN expr
+    (33) assign_expr -> IDENTIFIER . MULTIPLY_ASSIGN expr
+    (34) assign_expr -> IDENTIFIER . DIVIDE_ASSIGN expr
+    (35) assign_expr -> IDENTIFIER . INCREMENT
+    (36) assign_expr -> IDENTIFIER . DECREMENT
+
+    ASSIGN          shift and go to state 28
+    PLUS_ASSIGN     shift and go to state 29
+    MINUS_ASSIGN    shift and go to state 30
+    MULTIPLY_ASSIGN shift and go to state 31
+    DIVIDE_ASSIGN   shift and go to state 32
+    INCREMENT       shift and go to state 33
+    DECREMENT       shift and go to state 34
+
+
+state 21
+
+    (28) while_stmt -> WHILE . LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+
+    LEFT_PAREN      shift and go to state 35
+
+
+state 22
+
+    (29) for_stmt -> FOR . LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+
+    LEFT_PAREN      shift and go to state 36
+
+
+state 23
+
+    (4) decl_var -> type id_list . SEMICOLON
+    (9) id_list -> id_list . COMMA IDENTIFIER
+
+    SEMICOLON       shift and go to state 37
+    COMMA           shift and go to state 38
+
+
+state 24
+
+    (10) id_list -> IDENTIFIER .
+
+    SEMICOLON       reduce using rule 10 (id_list -> IDENTIFIER .)
+    COMMA           reduce using rule 10 (id_list -> IDENTIFIER .)
+
+
+state 25
+
+    (17) stmt -> assign_expr SEMICOLON .
+
+    IF              reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    SWITCH          reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    WHILE           reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    FOR             reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    IDENTIFIER      reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    $end            reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    BREAK           reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    DEFAULT         reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+    CASE            reduce using rule 17 (stmt -> assign_expr SEMICOLON .)
+
+
+state 26
+
+    (18) if_stmt -> IF LEFT_PAREN . condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+    (44) condition -> . expr relational_operator expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    condition                      shift and go to state 40
+    expr                           shift and go to state 41
+
+state 27
+
+    (21) switch_stmt -> SWITCH LEFT_PAREN . IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+
+    IDENTIFIER      shift and go to state 44
+
+
+state 28
+
+    (30) assign_expr -> IDENTIFIER ASSIGN . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 45
+
+state 29
+
+    (31) assign_expr -> IDENTIFIER PLUS_ASSIGN . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 46
+
+state 30
+
+    (32) assign_expr -> IDENTIFIER MINUS_ASSIGN . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 47
+
+state 31
+
+    (33) assign_expr -> IDENTIFIER MULTIPLY_ASSIGN . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 48
+
+state 32
+
+    (34) assign_expr -> IDENTIFIER DIVIDE_ASSIGN . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 49
+
+state 33
+
+    (35) assign_expr -> IDENTIFIER INCREMENT .
+
+    SEMICOLON       reduce using rule 35 (assign_expr -> IDENTIFIER INCREMENT .)
+    RIGHT_PAREN     reduce using rule 35 (assign_expr -> IDENTIFIER INCREMENT .)
+
+
+state 34
+
+    (36) assign_expr -> IDENTIFIER DECREMENT .
+
+    SEMICOLON       reduce using rule 36 (assign_expr -> IDENTIFIER DECREMENT .)
+    RIGHT_PAREN     reduce using rule 36 (assign_expr -> IDENTIFIER DECREMENT .)
+
+
+state 35
+
+    (28) while_stmt -> WHILE LEFT_PAREN . condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (44) condition -> . expr relational_operator expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    condition                      shift and go to state 50
+    expr                           shift and go to state 41
+
+state 36
+
+    (29) for_stmt -> FOR LEFT_PAREN . assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    IDENTIFIER      shift and go to state 20
+
+    assign_expr                    shift and go to state 51
+
+state 37
+
+    (4) decl_var -> type id_list SEMICOLON .
+
+    INT             reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    FLOAT           reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    DOUBLE          reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    CHAR            reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    IF              reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    SWITCH          reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    WHILE           reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    FOR             reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    IDENTIFIER      reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+    $end            reduce using rule 4 (decl_var -> type id_list SEMICOLON .)
+
+
+state 38
+
+    (9) id_list -> id_list COMMA . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 52
+
+
+state 39
+
+    (41) expr -> LEFT_PAREN . expr RIGHT_PAREN
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 53
+
+state 40
+
+    (18) if_stmt -> IF LEFT_PAREN condition . RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+
+    RIGHT_PAREN     shift and go to state 54
+
+
+state 41
+
+    (44) condition -> expr . relational_operator expr
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+    (45) relational_operator -> . EQUAL
+    (46) relational_operator -> . NOT_EQUAL
+    (47) relational_operator -> . LESS_EQUAL
+    (48) relational_operator -> . GREATER_EQUAL
+    (49) relational_operator -> . LESS_THAN
+    (50) relational_operator -> . GREATER_THAN
+
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+    EQUAL           shift and go to state 60
+    NOT_EQUAL       shift and go to state 61
+    LESS_EQUAL      shift and go to state 62
+    GREATER_EQUAL   shift and go to state 63
+    LESS_THAN       shift and go to state 64
+    GREATER_THAN    shift and go to state 65
+
+    relational_operator            shift and go to state 55
+
+state 42
+
+    (42) expr -> NUMBER .
+
+    PLUS            reduce using rule 42 (expr -> NUMBER .)
+    MINUS           reduce using rule 42 (expr -> NUMBER .)
+    MULTIPLY        reduce using rule 42 (expr -> NUMBER .)
+    DIVIDE          reduce using rule 42 (expr -> NUMBER .)
+    EQUAL           reduce using rule 42 (expr -> NUMBER .)
+    NOT_EQUAL       reduce using rule 42 (expr -> NUMBER .)
+    LESS_EQUAL      reduce using rule 42 (expr -> NUMBER .)
+    GREATER_EQUAL   reduce using rule 42 (expr -> NUMBER .)
+    LESS_THAN       reduce using rule 42 (expr -> NUMBER .)
+    GREATER_THAN    reduce using rule 42 (expr -> NUMBER .)
+    SEMICOLON       reduce using rule 42 (expr -> NUMBER .)
+    RIGHT_PAREN     reduce using rule 42 (expr -> NUMBER .)
+
+
+state 43
+
+    (43) expr -> IDENTIFIER .
+
+    PLUS            reduce using rule 43 (expr -> IDENTIFIER .)
+    MINUS           reduce using rule 43 (expr -> IDENTIFIER .)
+    MULTIPLY        reduce using rule 43 (expr -> IDENTIFIER .)
+    DIVIDE          reduce using rule 43 (expr -> IDENTIFIER .)
+    EQUAL           reduce using rule 43 (expr -> IDENTIFIER .)
+    NOT_EQUAL       reduce using rule 43 (expr -> IDENTIFIER .)
+    LESS_EQUAL      reduce using rule 43 (expr -> IDENTIFIER .)
+    GREATER_EQUAL   reduce using rule 43 (expr -> IDENTIFIER .)
+    LESS_THAN       reduce using rule 43 (expr -> IDENTIFIER .)
+    GREATER_THAN    reduce using rule 43 (expr -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 43 (expr -> IDENTIFIER .)
+    RIGHT_PAREN     reduce using rule 43 (expr -> IDENTIFIER .)
+
+
+state 44
+
+    (21) switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER . RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+
+    RIGHT_PAREN     shift and go to state 66
+
+
+state 45
+
+    (30) assign_expr -> IDENTIFIER ASSIGN expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    SEMICOLON       reduce using rule 30 (assign_expr -> IDENTIFIER ASSIGN expr .)
+    RIGHT_PAREN     reduce using rule 30 (assign_expr -> IDENTIFIER ASSIGN expr .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+
+state 46
+
+    (31) assign_expr -> IDENTIFIER PLUS_ASSIGN expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    SEMICOLON       reduce using rule 31 (assign_expr -> IDENTIFIER PLUS_ASSIGN expr .)
+    RIGHT_PAREN     reduce using rule 31 (assign_expr -> IDENTIFIER PLUS_ASSIGN expr .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+
+state 47
+
+    (32) assign_expr -> IDENTIFIER MINUS_ASSIGN expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    SEMICOLON       reduce using rule 32 (assign_expr -> IDENTIFIER MINUS_ASSIGN expr .)
+    RIGHT_PAREN     reduce using rule 32 (assign_expr -> IDENTIFIER MINUS_ASSIGN expr .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+
+state 48
+
+    (33) assign_expr -> IDENTIFIER MULTIPLY_ASSIGN expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    SEMICOLON       reduce using rule 33 (assign_expr -> IDENTIFIER MULTIPLY_ASSIGN expr .)
+    RIGHT_PAREN     reduce using rule 33 (assign_expr -> IDENTIFIER MULTIPLY_ASSIGN expr .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+
+state 49
+
+    (34) assign_expr -> IDENTIFIER DIVIDE_ASSIGN expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    SEMICOLON       reduce using rule 34 (assign_expr -> IDENTIFIER DIVIDE_ASSIGN expr .)
+    RIGHT_PAREN     reduce using rule 34 (assign_expr -> IDENTIFIER DIVIDE_ASSIGN expr .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+
+state 50
+
+    (28) while_stmt -> WHILE LEFT_PAREN condition . RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+
+    RIGHT_PAREN     shift and go to state 67
+
+
+state 51
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr . SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+
+    SEMICOLON       shift and go to state 68
+
+
+state 52
+
+    (9) id_list -> id_list COMMA IDENTIFIER .
+
+    SEMICOLON       reduce using rule 9 (id_list -> id_list COMMA IDENTIFIER .)
+    COMMA           reduce using rule 9 (id_list -> id_list COMMA IDENTIFIER .)
+
+
+state 53
+
+    (41) expr -> LEFT_PAREN expr . RIGHT_PAREN
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    RIGHT_PAREN     shift and go to state 69
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+
+state 54
+
+    (18) if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN . LEFT_BRACE stmt_list RIGHT_BRACE else_part
+
+    LEFT_BRACE      shift and go to state 70
+
+
+state 55
+
+    (44) condition -> expr relational_operator . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 71
+
+state 56
+
+    (37) expr -> expr PLUS . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 72
+
+state 57
+
+    (38) expr -> expr MINUS . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 73
+
+state 58
+
+    (39) expr -> expr MULTIPLY . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 74
+
+state 59
+
+    (40) expr -> expr DIVIDE . expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    expr                           shift and go to state 75
+
+state 60
+
+    (45) relational_operator -> EQUAL .
+
+    LEFT_PAREN      reduce using rule 45 (relational_operator -> EQUAL .)
+    NUMBER          reduce using rule 45 (relational_operator -> EQUAL .)
+    IDENTIFIER      reduce using rule 45 (relational_operator -> EQUAL .)
+
+
+state 61
+
+    (46) relational_operator -> NOT_EQUAL .
+
+    LEFT_PAREN      reduce using rule 46 (relational_operator -> NOT_EQUAL .)
+    NUMBER          reduce using rule 46 (relational_operator -> NOT_EQUAL .)
+    IDENTIFIER      reduce using rule 46 (relational_operator -> NOT_EQUAL .)
+
+
+state 62
+
+    (47) relational_operator -> LESS_EQUAL .
+
+    LEFT_PAREN      reduce using rule 47 (relational_operator -> LESS_EQUAL .)
+    NUMBER          reduce using rule 47 (relational_operator -> LESS_EQUAL .)
+    IDENTIFIER      reduce using rule 47 (relational_operator -> LESS_EQUAL .)
+
+
+state 63
+
+    (48) relational_operator -> GREATER_EQUAL .
+
+    LEFT_PAREN      reduce using rule 48 (relational_operator -> GREATER_EQUAL .)
+    NUMBER          reduce using rule 48 (relational_operator -> GREATER_EQUAL .)
+    IDENTIFIER      reduce using rule 48 (relational_operator -> GREATER_EQUAL .)
+
+
+state 64
+
+    (49) relational_operator -> LESS_THAN .
+
+    LEFT_PAREN      reduce using rule 49 (relational_operator -> LESS_THAN .)
+    NUMBER          reduce using rule 49 (relational_operator -> LESS_THAN .)
+    IDENTIFIER      reduce using rule 49 (relational_operator -> LESS_THAN .)
+
+
+state 65
+
+    (50) relational_operator -> GREATER_THAN .
+
+    LEFT_PAREN      reduce using rule 50 (relational_operator -> GREATER_THAN .)
+    NUMBER          reduce using rule 50 (relational_operator -> GREATER_THAN .)
+    IDENTIFIER      reduce using rule 50 (relational_operator -> GREATER_THAN .)
+
+
+state 66
+
+    (21) switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN . LEFT_BRACE case_list default_part RIGHT_BRACE
+
+    LEFT_BRACE      shift and go to state 76
+
+
+state 67
+
+    (28) while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN . LEFT_BRACE stmt_list RIGHT_BRACE
+
+    LEFT_BRACE      shift and go to state 77
+
+
+state 68
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON . condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (44) condition -> . expr relational_operator expr
+    (37) expr -> . expr PLUS expr
+    (38) expr -> . expr MINUS expr
+    (39) expr -> . expr MULTIPLY expr
+    (40) expr -> . expr DIVIDE expr
+    (41) expr -> . LEFT_PAREN expr RIGHT_PAREN
+    (42) expr -> . NUMBER
+    (43) expr -> . IDENTIFIER
+
+    LEFT_PAREN      shift and go to state 39
+    NUMBER          shift and go to state 42
+    IDENTIFIER      shift and go to state 43
+
+    condition                      shift and go to state 78
+    expr                           shift and go to state 41
+
+state 69
+
+    (41) expr -> LEFT_PAREN expr RIGHT_PAREN .
+
+    PLUS            reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    MINUS           reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    MULTIPLY        reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    DIVIDE          reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    EQUAL           reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    NOT_EQUAL       reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    LESS_EQUAL      reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    GREATER_EQUAL   reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    LESS_THAN       reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    GREATER_THAN    reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    SEMICOLON       reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+    RIGHT_PAREN     reduce using rule 41 (expr -> LEFT_PAREN expr RIGHT_PAREN .)
+
+
+state 70
+
+    (18) if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE . stmt_list RIGHT_BRACE else_part
+    (11) stmt_list -> . stmt_list stmt
+    (12) stmt_list -> . empty
+    (51) empty -> .
+
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+
+    stmt_list                      shift and go to state 79
+    empty                          shift and go to state 6
+
+state 71
+
+    (44) condition -> expr relational_operator expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    RIGHT_PAREN     reduce using rule 44 (condition -> expr relational_operator expr .)
+    SEMICOLON       reduce using rule 44 (condition -> expr relational_operator expr .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+
+state 72
+
+    (37) expr -> expr PLUS expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    PLUS            reduce using rule 37 (expr -> expr PLUS expr .)
+    MINUS           reduce using rule 37 (expr -> expr PLUS expr .)
+    EQUAL           reduce using rule 37 (expr -> expr PLUS expr .)
+    NOT_EQUAL       reduce using rule 37 (expr -> expr PLUS expr .)
+    LESS_EQUAL      reduce using rule 37 (expr -> expr PLUS expr .)
+    GREATER_EQUAL   reduce using rule 37 (expr -> expr PLUS expr .)
+    LESS_THAN       reduce using rule 37 (expr -> expr PLUS expr .)
+    GREATER_THAN    reduce using rule 37 (expr -> expr PLUS expr .)
+    SEMICOLON       reduce using rule 37 (expr -> expr PLUS expr .)
+    RIGHT_PAREN     reduce using rule 37 (expr -> expr PLUS expr .)
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+  ! MULTIPLY        [ reduce using rule 37 (expr -> expr PLUS expr .) ]
+  ! DIVIDE          [ reduce using rule 37 (expr -> expr PLUS expr .) ]
+  ! PLUS            [ shift and go to state 56 ]
+  ! MINUS           [ shift and go to state 57 ]
+
+
+state 73
+
+    (38) expr -> expr MINUS expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    PLUS            reduce using rule 38 (expr -> expr MINUS expr .)
+    MINUS           reduce using rule 38 (expr -> expr MINUS expr .)
+    EQUAL           reduce using rule 38 (expr -> expr MINUS expr .)
+    NOT_EQUAL       reduce using rule 38 (expr -> expr MINUS expr .)
+    LESS_EQUAL      reduce using rule 38 (expr -> expr MINUS expr .)
+    GREATER_EQUAL   reduce using rule 38 (expr -> expr MINUS expr .)
+    LESS_THAN       reduce using rule 38 (expr -> expr MINUS expr .)
+    GREATER_THAN    reduce using rule 38 (expr -> expr MINUS expr .)
+    SEMICOLON       reduce using rule 38 (expr -> expr MINUS expr .)
+    RIGHT_PAREN     reduce using rule 38 (expr -> expr MINUS expr .)
+    MULTIPLY        shift and go to state 58
+    DIVIDE          shift and go to state 59
+
+  ! MULTIPLY        [ reduce using rule 38 (expr -> expr MINUS expr .) ]
+  ! DIVIDE          [ reduce using rule 38 (expr -> expr MINUS expr .) ]
+  ! PLUS            [ shift and go to state 56 ]
+  ! MINUS           [ shift and go to state 57 ]
+
+
+state 74
+
+    (39) expr -> expr MULTIPLY expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    PLUS            reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    MINUS           reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    MULTIPLY        reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    DIVIDE          reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    EQUAL           reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    NOT_EQUAL       reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    LESS_EQUAL      reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    GREATER_EQUAL   reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    LESS_THAN       reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    GREATER_THAN    reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    SEMICOLON       reduce using rule 39 (expr -> expr MULTIPLY expr .)
+    RIGHT_PAREN     reduce using rule 39 (expr -> expr MULTIPLY expr .)
+
+  ! PLUS            [ shift and go to state 56 ]
+  ! MINUS           [ shift and go to state 57 ]
+  ! MULTIPLY        [ shift and go to state 58 ]
+  ! DIVIDE          [ shift and go to state 59 ]
+
+
+state 75
+
+    (40) expr -> expr DIVIDE expr .
+    (37) expr -> expr . PLUS expr
+    (38) expr -> expr . MINUS expr
+    (39) expr -> expr . MULTIPLY expr
+    (40) expr -> expr . DIVIDE expr
+
+    PLUS            reduce using rule 40 (expr -> expr DIVIDE expr .)
+    MINUS           reduce using rule 40 (expr -> expr DIVIDE expr .)
+    MULTIPLY        reduce using rule 40 (expr -> expr DIVIDE expr .)
+    DIVIDE          reduce using rule 40 (expr -> expr DIVIDE expr .)
+    EQUAL           reduce using rule 40 (expr -> expr DIVIDE expr .)
+    NOT_EQUAL       reduce using rule 40 (expr -> expr DIVIDE expr .)
+    LESS_EQUAL      reduce using rule 40 (expr -> expr DIVIDE expr .)
+    GREATER_EQUAL   reduce using rule 40 (expr -> expr DIVIDE expr .)
+    LESS_THAN       reduce using rule 40 (expr -> expr DIVIDE expr .)
+    GREATER_THAN    reduce using rule 40 (expr -> expr DIVIDE expr .)
+    SEMICOLON       reduce using rule 40 (expr -> expr DIVIDE expr .)
+    RIGHT_PAREN     reduce using rule 40 (expr -> expr DIVIDE expr .)
+
+  ! PLUS            [ shift and go to state 56 ]
+  ! MINUS           [ shift and go to state 57 ]
+  ! MULTIPLY        [ shift and go to state 58 ]
+  ! DIVIDE          [ shift and go to state 59 ]
+
+
+state 76
+
+    (21) switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE . case_list default_part RIGHT_BRACE
+    (22) case_list -> . case_list case_item
+    (23) case_list -> . empty
+    (51) empty -> .
+
+    DEFAULT         reduce using rule 51 (empty -> .)
+    CASE            reduce using rule 51 (empty -> .)
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+
+    case_list                      shift and go to state 80
+    empty                          shift and go to state 81
+
+state 77
+
+    (28) while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE . stmt_list RIGHT_BRACE
+    (11) stmt_list -> . stmt_list stmt
+    (12) stmt_list -> . empty
+    (51) empty -> .
+
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+
+    stmt_list                      shift and go to state 82
+    empty                          shift and go to state 6
+
+state 78
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition . SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+
+    SEMICOLON       shift and go to state 83
+
+
+state 79
+
+    (18) if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list . RIGHT_BRACE else_part
+    (11) stmt_list -> stmt_list . stmt
+    (13) stmt -> . if_stmt
+    (14) stmt -> . switch_stmt
+    (15) stmt -> . while_stmt
+    (16) stmt -> . for_stmt
+    (17) stmt -> . assign_expr SEMICOLON
+    (18) if_stmt -> . IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+    (21) switch_stmt -> . SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+    (28) while_stmt -> . WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (29) for_stmt -> . FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    RIGHT_BRACE     shift and go to state 84
+    IF              shift and go to state 18
+    SWITCH          shift and go to state 19
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IDENTIFIER      shift and go to state 20
+
+    stmt                           shift and go to state 12
+    if_stmt                        shift and go to state 13
+    switch_stmt                    shift and go to state 14
+    while_stmt                     shift and go to state 15
+    for_stmt                       shift and go to state 16
+    assign_expr                    shift and go to state 17
+
+state 80
+
+    (21) switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list . default_part RIGHT_BRACE
+    (22) case_list -> case_list . case_item
+    (26) default_part -> . DEFAULT COLON stmt_list
+    (27) default_part -> . empty
+    (24) case_item -> . CASE NUMBER COLON stmt_list BREAK SEMICOLON
+    (25) case_item -> . CASE NUMBER COLON stmt_list
+    (51) empty -> .
+
+    DEFAULT         shift and go to state 87
+    CASE            shift and go to state 89
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+
+    default_part                   shift and go to state 85
+    case_item                      shift and go to state 86
+    empty                          shift and go to state 88
+
+state 81
+
+    (23) case_list -> empty .
+
+    DEFAULT         reduce using rule 23 (case_list -> empty .)
+    CASE            reduce using rule 23 (case_list -> empty .)
+    RIGHT_BRACE     reduce using rule 23 (case_list -> empty .)
+
+
+state 82
+
+    (28) while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list . RIGHT_BRACE
+    (11) stmt_list -> stmt_list . stmt
+    (13) stmt -> . if_stmt
+    (14) stmt -> . switch_stmt
+    (15) stmt -> . while_stmt
+    (16) stmt -> . for_stmt
+    (17) stmt -> . assign_expr SEMICOLON
+    (18) if_stmt -> . IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+    (21) switch_stmt -> . SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+    (28) while_stmt -> . WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (29) for_stmt -> . FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    RIGHT_BRACE     shift and go to state 90
+    IF              shift and go to state 18
+    SWITCH          shift and go to state 19
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IDENTIFIER      shift and go to state 20
+
+    stmt                           shift and go to state 12
+    if_stmt                        shift and go to state 13
+    switch_stmt                    shift and go to state 14
+    while_stmt                     shift and go to state 15
+    for_stmt                       shift and go to state 16
+    assign_expr                    shift and go to state 17
+
+state 83
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON . assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    IDENTIFIER      shift and go to state 20
+
+    assign_expr                    shift and go to state 91
+
+state 84
+
+    (18) if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE . else_part
+    (19) else_part -> . ELSE LEFT_BRACE stmt_list RIGHT_BRACE
+    (20) else_part -> . empty
+    (51) empty -> .
+
+    ELSE            shift and go to state 93
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+    $end            reduce using rule 51 (empty -> .)
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+    BREAK           reduce using rule 51 (empty -> .)
+    DEFAULT         reduce using rule 51 (empty -> .)
+    CASE            reduce using rule 51 (empty -> .)
+
+    else_part                      shift and go to state 92
+    empty                          shift and go to state 94
+
+state 85
+
+    (21) switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part . RIGHT_BRACE
+
+    RIGHT_BRACE     shift and go to state 95
+
+
+state 86
+
+    (22) case_list -> case_list case_item .
+
+    DEFAULT         reduce using rule 22 (case_list -> case_list case_item .)
+    CASE            reduce using rule 22 (case_list -> case_list case_item .)
+    RIGHT_BRACE     reduce using rule 22 (case_list -> case_list case_item .)
+
+
+state 87
+
+    (26) default_part -> DEFAULT . COLON stmt_list
+
+    COLON           shift and go to state 96
+
+
+state 88
+
+    (27) default_part -> empty .
+
+    RIGHT_BRACE     reduce using rule 27 (default_part -> empty .)
+
+
+state 89
+
+    (24) case_item -> CASE . NUMBER COLON stmt_list BREAK SEMICOLON
+    (25) case_item -> CASE . NUMBER COLON stmt_list
+
+    NUMBER          shift and go to state 97
+
+
+state 90
+
+    (28) while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .
+
+    IF              reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    SWITCH          reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    WHILE           reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    FOR             reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    IDENTIFIER      reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    $end            reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    RIGHT_BRACE     reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    BREAK           reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    DEFAULT         reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    CASE            reduce using rule 28 (while_stmt -> WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+
+
+state 91
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr . RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+
+    RIGHT_PAREN     shift and go to state 98
+
+
+state 92
+
+    (18) if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .
+
+    IF              reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    SWITCH          reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    WHILE           reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    FOR             reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    IDENTIFIER      reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    $end            reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    RIGHT_BRACE     reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    BREAK           reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    DEFAULT         reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+    CASE            reduce using rule 18 (if_stmt -> IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part .)
+
+
+state 93
+
+    (19) else_part -> ELSE . LEFT_BRACE stmt_list RIGHT_BRACE
+
+    LEFT_BRACE      shift and go to state 99
+
+
+state 94
+
+    (20) else_part -> empty .
+
+    IF              reduce using rule 20 (else_part -> empty .)
+    SWITCH          reduce using rule 20 (else_part -> empty .)
+    WHILE           reduce using rule 20 (else_part -> empty .)
+    FOR             reduce using rule 20 (else_part -> empty .)
+    IDENTIFIER      reduce using rule 20 (else_part -> empty .)
+    $end            reduce using rule 20 (else_part -> empty .)
+    RIGHT_BRACE     reduce using rule 20 (else_part -> empty .)
+    BREAK           reduce using rule 20 (else_part -> empty .)
+    DEFAULT         reduce using rule 20 (else_part -> empty .)
+    CASE            reduce using rule 20 (else_part -> empty .)
+
+
+state 95
+
+    (21) switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .
+
+    IF              reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    SWITCH          reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    WHILE           reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    FOR             reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    IDENTIFIER      reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    $end            reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    RIGHT_BRACE     reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    BREAK           reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    DEFAULT         reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+    CASE            reduce using rule 21 (switch_stmt -> SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE .)
+
+
+state 96
+
+    (26) default_part -> DEFAULT COLON . stmt_list
+    (11) stmt_list -> . stmt_list stmt
+    (12) stmt_list -> . empty
+    (51) empty -> .
+
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+
+    stmt_list                      shift and go to state 100
+    empty                          shift and go to state 6
+
+state 97
+
+    (24) case_item -> CASE NUMBER . COLON stmt_list BREAK SEMICOLON
+    (25) case_item -> CASE NUMBER . COLON stmt_list
+
+    COLON           shift and go to state 101
+
+
+state 98
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN . LEFT_BRACE stmt_list RIGHT_BRACE
+
+    LEFT_BRACE      shift and go to state 102
+
+
+state 99
+
+    (19) else_part -> ELSE LEFT_BRACE . stmt_list RIGHT_BRACE
+    (11) stmt_list -> . stmt_list stmt
+    (12) stmt_list -> . empty
+    (51) empty -> .
+
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+
+    stmt_list                      shift and go to state 103
+    empty                          shift and go to state 6
+
+state 100
+
+    (26) default_part -> DEFAULT COLON stmt_list .
+    (11) stmt_list -> stmt_list . stmt
+    (13) stmt -> . if_stmt
+    (14) stmt -> . switch_stmt
+    (15) stmt -> . while_stmt
+    (16) stmt -> . for_stmt
+    (17) stmt -> . assign_expr SEMICOLON
+    (18) if_stmt -> . IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+    (21) switch_stmt -> . SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+    (28) while_stmt -> . WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (29) for_stmt -> . FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    RIGHT_BRACE     reduce using rule 26 (default_part -> DEFAULT COLON stmt_list .)
+    IF              shift and go to state 18
+    SWITCH          shift and go to state 19
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IDENTIFIER      shift and go to state 20
+
+    stmt                           shift and go to state 12
+    if_stmt                        shift and go to state 13
+    switch_stmt                    shift and go to state 14
+    while_stmt                     shift and go to state 15
+    for_stmt                       shift and go to state 16
+    assign_expr                    shift and go to state 17
+
+state 101
+
+    (24) case_item -> CASE NUMBER COLON . stmt_list BREAK SEMICOLON
+    (25) case_item -> CASE NUMBER COLON . stmt_list
+    (11) stmt_list -> . stmt_list stmt
+    (12) stmt_list -> . empty
+    (51) empty -> .
+
+    BREAK           reduce using rule 51 (empty -> .)
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+    DEFAULT         reduce using rule 51 (empty -> .)
+    CASE            reduce using rule 51 (empty -> .)
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+
+    stmt_list                      shift and go to state 104
+    empty                          shift and go to state 6
+
+state 102
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE . stmt_list RIGHT_BRACE
+    (11) stmt_list -> . stmt_list stmt
+    (12) stmt_list -> . empty
+    (51) empty -> .
+
+    RIGHT_BRACE     reduce using rule 51 (empty -> .)
+    IF              reduce using rule 51 (empty -> .)
+    SWITCH          reduce using rule 51 (empty -> .)
+    WHILE           reduce using rule 51 (empty -> .)
+    FOR             reduce using rule 51 (empty -> .)
+    IDENTIFIER      reduce using rule 51 (empty -> .)
+
+    stmt_list                      shift and go to state 105
+    empty                          shift and go to state 6
+
+state 103
+
+    (19) else_part -> ELSE LEFT_BRACE stmt_list . RIGHT_BRACE
+    (11) stmt_list -> stmt_list . stmt
+    (13) stmt -> . if_stmt
+    (14) stmt -> . switch_stmt
+    (15) stmt -> . while_stmt
+    (16) stmt -> . for_stmt
+    (17) stmt -> . assign_expr SEMICOLON
+    (18) if_stmt -> . IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+    (21) switch_stmt -> . SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+    (28) while_stmt -> . WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (29) for_stmt -> . FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    RIGHT_BRACE     shift and go to state 106
+    IF              shift and go to state 18
+    SWITCH          shift and go to state 19
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IDENTIFIER      shift and go to state 20
+
+    stmt                           shift and go to state 12
+    if_stmt                        shift and go to state 13
+    switch_stmt                    shift and go to state 14
+    while_stmt                     shift and go to state 15
+    for_stmt                       shift and go to state 16
+    assign_expr                    shift and go to state 17
+
+state 104
+
+    (24) case_item -> CASE NUMBER COLON stmt_list . BREAK SEMICOLON
+    (25) case_item -> CASE NUMBER COLON stmt_list .
+    (11) stmt_list -> stmt_list . stmt
+    (13) stmt -> . if_stmt
+    (14) stmt -> . switch_stmt
+    (15) stmt -> . while_stmt
+    (16) stmt -> . for_stmt
+    (17) stmt -> . assign_expr SEMICOLON
+    (18) if_stmt -> . IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+    (21) switch_stmt -> . SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+    (28) while_stmt -> . WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (29) for_stmt -> . FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    BREAK           shift and go to state 107
+    DEFAULT         reduce using rule 25 (case_item -> CASE NUMBER COLON stmt_list .)
+    CASE            reduce using rule 25 (case_item -> CASE NUMBER COLON stmt_list .)
+    RIGHT_BRACE     reduce using rule 25 (case_item -> CASE NUMBER COLON stmt_list .)
+    IF              shift and go to state 18
+    SWITCH          shift and go to state 19
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IDENTIFIER      shift and go to state 20
+
+    stmt                           shift and go to state 12
+    if_stmt                        shift and go to state 13
+    switch_stmt                    shift and go to state 14
+    while_stmt                     shift and go to state 15
+    for_stmt                       shift and go to state 16
+    assign_expr                    shift and go to state 17
+
+state 105
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list . RIGHT_BRACE
+    (11) stmt_list -> stmt_list . stmt
+    (13) stmt -> . if_stmt
+    (14) stmt -> . switch_stmt
+    (15) stmt -> . while_stmt
+    (16) stmt -> . for_stmt
+    (17) stmt -> . assign_expr SEMICOLON
+    (18) if_stmt -> . IF LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE else_part
+    (21) switch_stmt -> . SWITCH LEFT_PAREN IDENTIFIER RIGHT_PAREN LEFT_BRACE case_list default_part RIGHT_BRACE
+    (28) while_stmt -> . WHILE LEFT_PAREN condition RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (29) for_stmt -> . FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE
+    (30) assign_expr -> . IDENTIFIER ASSIGN expr
+    (31) assign_expr -> . IDENTIFIER PLUS_ASSIGN expr
+    (32) assign_expr -> . IDENTIFIER MINUS_ASSIGN expr
+    (33) assign_expr -> . IDENTIFIER MULTIPLY_ASSIGN expr
+    (34) assign_expr -> . IDENTIFIER DIVIDE_ASSIGN expr
+    (35) assign_expr -> . IDENTIFIER INCREMENT
+    (36) assign_expr -> . IDENTIFIER DECREMENT
+
+    RIGHT_BRACE     shift and go to state 108
+    IF              shift and go to state 18
+    SWITCH          shift and go to state 19
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IDENTIFIER      shift and go to state 20
+
+    assign_expr                    shift and go to state 17
+    stmt                           shift and go to state 12
+    if_stmt                        shift and go to state 13
+    switch_stmt                    shift and go to state 14
+    while_stmt                     shift and go to state 15
+    for_stmt                       shift and go to state 16
+
+state 106
+
+    (19) else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .
+
+    IF              reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    SWITCH          reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    WHILE           reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    FOR             reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    IDENTIFIER      reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    $end            reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    RIGHT_BRACE     reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    BREAK           reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    DEFAULT         reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+    CASE            reduce using rule 19 (else_part -> ELSE LEFT_BRACE stmt_list RIGHT_BRACE .)
+
+
+state 107
+
+    (24) case_item -> CASE NUMBER COLON stmt_list BREAK . SEMICOLON
+
+    SEMICOLON       shift and go to state 109
+
+
+state 108
+
+    (29) for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .
+
+    IF              reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    SWITCH          reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    WHILE           reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    FOR             reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    IDENTIFIER      reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    $end            reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    RIGHT_BRACE     reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    BREAK           reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    DEFAULT         reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+    CASE            reduce using rule 29 (for_stmt -> FOR LEFT_PAREN assign_expr SEMICOLON condition SEMICOLON assign_expr RIGHT_PAREN LEFT_BRACE stmt_list RIGHT_BRACE .)
+
+
+state 109
+
+    (24) case_item -> CASE NUMBER COLON stmt_list BREAK SEMICOLON .
+
+    DEFAULT         reduce using rule 24 (case_item -> CASE NUMBER COLON stmt_list BREAK SEMICOLON .)
+    CASE            reduce using rule 24 (case_item -> CASE NUMBER COLON stmt_list BREAK SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 24 (case_item -> CASE NUMBER COLON stmt_list BREAK SEMICOLON .)
+
